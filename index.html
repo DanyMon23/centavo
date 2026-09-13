@@ -8,10 +8,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
 
   :root{
-    --bg: #0F2E1A;
-    --panel: #1A4D2E;
-    --panel-2: #2D6A4F;
-    --line: #40916C;
+    --bg: #2B2B2B;
+    --panel: #3D3D3D;
+    --panel-2: #4F4F4F;
+    --line: #5A5A5A;
     --coral: #52B788;
     --gold: #FFD60A;
     --lilac: #74C69D;
@@ -85,7 +85,7 @@
 
   .bubble{
     background: var(--cream);
-    color: #0F2E1A;
+    color: #2B2B2B;
     border-radius: 16px;
     padding: 10px 14px;
     font-size: 14px;
@@ -132,8 +132,9 @@
     background: var(--panel-2); color: var(--muted); font-weight:700; font-size:14px;
     cursor:pointer; transition: all .15s ease;
   }
-  .type-btn.active[data-type="gasto"]{ background: var(--coral); color:#0F2E1A; border-color:var(--coral); }
-  .type-btn.active[data-type="ingreso"]{ background: var(--gold); color:#0F2E1A; border-color:var(--gold); }
+  .type-btn.active[data-type="gasto"]{ background: var(--coral); color:#2B2B2B; border-color:var(--coral); }
+  .type-btn.active[data-type="ingreso"]{ background: var(--gold); color:#2B2B2B; border-color:var(--gold); }
+  .type-btn.active[data-type="inversion"]{ background: #40916C; color:#E8F5E9; border-color:#40916C; }
 
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
   .chip{
@@ -153,7 +154,7 @@
 
   .btn-primary{
     width:100%; padding: 13px; border-radius: 14px; border:none;
-    background: var(--gold); color: #0F2E1A; font-weight:800; font-size:15px;
+    background: var(--gold); color: #2B2B2B; font-weight:800; font-size:15px;
     cursor:pointer; margin-top:4px;
   }
   .btn-primary:active{ transform: scale(0.98); }
@@ -183,6 +184,16 @@
   }
   .edit-goal-link{ font-size:12px; color: var(--muted); text-decoration:underline; cursor:pointer; margin-top:10px; display:inline-block; }
 
+  /* ---------- Investments ---------- */
+  .investment-item{
+    display:flex; align-items:center; gap:10px; padding: 12px; background:var(--panel-2); border-radius:14px; margin-bottom:10px;
+  }
+  .investment-item .icon{ font-size:20px; }
+  .investment-item .details{ flex:1; min-width:0; }
+  .investment-name{ font-weight:700; font-size:14px; }
+  .investment-amount{ font-size:13px; color:var(--muted); }
+  .investment-item .delete{ background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px; padding:4px 6px; }
+
   /* ---------- Achievements ---------- */
   .ach-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; }
   .ach{
@@ -210,7 +221,7 @@
   /* ---------- Toast ---------- */
   #toast{
     position: fixed; top: 16px; left:50%; transform: translateX(-50%) translateY(-60px);
-    background: var(--gold); color:#0F2E1A; font-weight:800; font-size:14px;
+    background: var(--gold); color:#2B2B2B; font-weight:800; font-size:14px;
     padding: 12px 18px; border-radius: 999px; z-index: 50;
     transition: transform .35s cubic-bezier(.2,1.4,.4,1);
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
@@ -228,7 +239,7 @@
     border-radius: 50%;
     background: linear-gradient(150deg, var(--gold), var(--coral));
     border: none;
-    color: #0F2E1A;
+    color: #2B2B2B;
     font-size: 28px;
     font-weight: 800;
     display:flex; align-items:center; justify-content:center;
@@ -278,17 +289,17 @@
       <svg viewBox="0 0 130 130" width="130" height="130">
         <ellipse cx="65" cy="118" rx="38" ry="6" fill="#000" opacity="0.15"/>
         <path d="M65 14c30 0 46 22 46 50s-16 52-46 52-46-24-46-52S35 14 65 14z" fill="var(--lilac)"/>
-        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-happy"/>
-        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-happy"/>
-        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-neutral"/>
-        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-neutral"/>
-        <ellipse cx="46" cy="60" rx="7" ry="7" fill="#0F2E1A" class="face-sad"/>
-        <ellipse cx="84" cy="60" rx="7" ry="7" fill="#0F2E1A" class="face-sad"/>
+        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#2B2B2B" class="face-happy"/>
+        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#2B2B2B" class="face-happy"/>
+        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#2B2B2B" class="face-neutral"/>
+        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#2B2B2B" class="face-neutral"/>
+        <ellipse cx="46" cy="60" rx="7" ry="7" fill="#2B2B2B" class="face-sad"/>
+        <ellipse cx="84" cy="60" rx="7" ry="7" fill="#2B2B2B" class="face-sad"/>
         <circle cx="44" cy="52" r="2" fill="#F3EFE4" class="face-happy"/>
         <circle cx="82" cy="52" r="2" fill="#F3EFE4" class="face-happy"/>
-        <path d="M46 82c8 10 30 10 38 0" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-happy"/>
-        <path d="M46 86h38" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-neutral"/>
-        <path d="M46 92c8-9 30-9 38 0" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-sad"/>
+        <path d="M46 82c8 10 30 10 38 0" stroke="#2B2B2B" stroke-width="4" fill="none" stroke-linecap="round" class="face-happy"/>
+        <path d="M46 86h38" stroke="#2B2B2B" stroke-width="4" fill="none" stroke-linecap="round" class="face-neutral"/>
+        <path d="M46 92c8-9 30-9 38 0" stroke="#2B2B2B" stroke-width="4" fill="none" stroke-linecap="round" class="face-sad"/>
         <ellipse cx="34" cy="72" rx="7" ry="4" fill="var(--pink)" opacity="0.6"/>
         <ellipse cx="96" cy="72" rx="7" ry="4" fill="var(--pink)" opacity="0.6"/>
         <g transform="translate(65,17)">
@@ -327,6 +338,7 @@
     <div class="type-toggle">
       <button class="type-btn active" data-type="gasto" id="btn-gasto">Gasto</button>
       <button class="type-btn" data-type="ingreso" id="btn-ingreso">Ingreso</button>
+      <button class="type-btn" data-type="inversion" id="btn-inversion">Inversión</button>
     </div>
     <div class="chip-row" id="chip-row"></div>
     <div class="field-row">
@@ -346,6 +358,18 @@
   <div class="card">
     <h2>Tu meta</h2>
     <div id="goal-section"></div>
+  </div>
+
+  <div class="card">
+    <h2>Mis inversiones</h2>
+    <div class="field-row">
+      <input type="text" id="investment-name-input" placeholder="Nombre (ej: Acciones, Bonos)">
+    </div>
+    <div class="field-row">
+      <input type="number" id="investment-amount-input" placeholder="Monto" inputmode="decimal">
+    </div>
+    <button class="btn-secondary" id="investment-add-btn" style="width:100%; margin-top:8px;">Agregar inversión</button>
+    <div id="investments-list" style="margin-top:12px;"></div>
   </div>
 
   <div class="card">
@@ -372,7 +396,14 @@
   const CATS_INGRESO = [
     {id:'sueldo', label:'Sueldo', icon:'💼', color:'#FFD60A'},
     {id:'extra', label:'Extra', icon:'🎁', color:'#95D5B2'},
-    {id:'inversion', label:'Inversi��n', icon:'📈', color:'#74C69D'},
+    {id:'inversion', label:'Inversión', icon:'📈', color:'#74C69D'},
+    {id:'otros', label:'Otros', icon:'📦', color:'#A8D5BA'},
+  ];
+  const CATS_INVERSION = [
+    {id:'acciones', label:'Acciones', icon:'📊', color:'#40916C'},
+    {id:'bonos', label:'Bonos', icon:'💎', color:'#52B788'},
+    {id:'fondos', label:'Fondos', icon:'🏦', color:'#74C69D'},
+    {id:'cripto', label:'Cripto', icon:'₿', color:'#95D5B2'},
     {id:'otros', label:'Otros', icon:'📦', color:'#A8D5BA'},
   ];
 
@@ -385,6 +416,7 @@
     {id:'firstGoal', icon:'🌱', label:'Primer ahorro', check:d=>d.goal.saved>0},
     {id:'goalHalf', icon:'🌿', label:'Meta a la mitad', check:d=>d.goal.target>0 && d.goal.saved/d.goal.target>=0.5},
     {id:'goalDone', icon:'🏆', label:'¡Meta cumplida!', check:d=>d.goal.target>0 && d.goal.saved>=d.goal.target},
+    {id:'firstInvest', icon:'📈', label:'Primer inversión', check:d=>d.investments.length>0},
   ];
 
   const HAPPY_MSGS = ['¡Vamos muy bien esta semana!', '¡Me encanta tu disciplina!', 'Tu balance se ve saludable ✨', '¡Seguimos creciendo juntos!'];
@@ -404,6 +436,7 @@
   function defaultData(){
     return {
       transactions: [],
+      investments: [],
       goal: { name: 'Mi meta de ahorro', target: 2000, saved: 0 },
       streak: { count: 0, lastDate: null },
       achievements: {}
@@ -454,9 +487,16 @@
     return net;
   }
 
-  function catList(){ return currentType === 'gasto' ? CATS_GASTO : CATS_INGRESO; }
+  function catList(){ 
+    if(currentType === 'gasto') return CATS_GASTO;
+    if(currentType === 'ingreso') return CATS_INGRESO;
+    return CATS_INVERSION;
+  }
   function findCat(type, id){
-    const list = type==='gasto' ? CATS_GASTO : CATS_INGRESO;
+    let list;
+    if(type === 'gasto') list = CATS_GASTO;
+    else if(type === 'ingreso') list = CATS_INGRESO;
+    else list = CATS_INVERSION;
     return list.find(c=>c.id===id) || list[list.length-1];
   }
 
@@ -581,6 +621,29 @@
     document.getElementById('edit-goal-link').onclick = onEditGoal;
   }
 
+  function renderInvestments(){
+    const list = document.getElementById('investments-list');
+    if(data.investments.length === 0){
+      list.innerHTML = '<div class="empty-note">Aún no has registrado inversiones.</div>';
+      return;
+    }
+    const total = data.investments.reduce((s,i)=>s+i.amount,0);
+    list.innerHTML = data.investments.map(inv=>{
+      const pct = Math.round((inv.amount/total)*100);
+      return `<div class="investment-item">
+        <div class="icon">📊</div>
+        <div class="details">
+          <div class="investment-name">${inv.name}</div>
+          <div class="investment-amount">${fmt(inv.amount)} (${pct}%)</div>
+        </div>
+        <button class="delete" data-id="${inv.id}" title="Eliminar">✕</button>
+      </div>`;
+    }).join('');
+    list.querySelectorAll('.delete').forEach(btn=>{
+      btn.onclick = ()=> deleteInvestment(btn.getAttribute('data-id'));
+    });
+  }
+
   function renderAchievements(){
     const grid = document.getElementById('achievements-grid');
     grid.innerHTML = ACHIEVEMENTS.map(a=>{
@@ -624,6 +687,7 @@
     renderChips();
     renderCategoryBars();
     renderGoal();
+    renderInvestments();
     renderAchievements();
     renderHistory();
   }
@@ -658,6 +722,34 @@
     renderAll();
   }
 
+  async function onAddInvestment(){
+    const nameInput = document.getElementById('investment-name-input');
+    const amountInput = document.getElementById('investment-amount-input');
+    const name = nameInput.value.trim();
+    const amount = parseFloat(amountInput.value);
+    if(!name || !amount || amount<=0){ 
+      if(!name) nameInput.focus();
+      else amountInput.focus();
+      return;
+    }
+    data.investments.push({
+      id: uid(),
+      name: name,
+      amount: amount
+    });
+    checkAchievements();
+    await saveData();
+    nameInput.value = '';
+    amountInput.value = '';
+    renderAll();
+  }
+
+  async function deleteInvestment(id){
+    data.investments = data.investments.filter(i=>i.id!==id);
+    await saveData();
+    renderAll();
+  }
+
   async function onAddToGoal(){
     const input = document.getElementById('goal-add-input');
     const amount = parseFloat(input.value);
@@ -684,6 +776,7 @@
     currentType = type;
     document.getElementById('btn-gasto').classList.toggle('active', type==='gasto');
     document.getElementById('btn-ingreso').classList.toggle('active', type==='ingreso');
+    document.getElementById('btn-inversion').classList.toggle('active', type==='inversion');
     selectedCat = catList()[0].id;
     renderChips();
   }
@@ -715,6 +808,7 @@
   async function init(){
     try{
       data = await loadData();
+      if(!data.investments) data.investments = [];
       const tpl = document.getElementById('main-template');
       const app = document.getElementById('app');
       app.innerHTML = '';
@@ -722,7 +816,9 @@
 
       document.getElementById('btn-gasto').onclick = ()=> setType('gasto');
       document.getElementById('btn-ingreso').onclick = ()=> setType('ingreso');
+      document.getElementById('btn-inversion').onclick = ()=> setType('inversion');
       document.getElementById('submit-btn').onclick = onSubmit;
+      document.getElementById('investment-add-btn').onclick = onAddInvestment;
 
       renderAll();
       setupShortcut();
