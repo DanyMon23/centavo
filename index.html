@@ -8,17 +8,17 @@
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
 
   :root{
-    --bg: #3B1F35;
-    --panel: #4A2745;
-    --panel-2: #5A3253;
-    --line: #714265;
-    --coral: #FF6F91;
-    --gold: #F0BE7A;
-    --lilac: #C9A0FF;
-    --teal: #9B8AC4;
-    --pink: #FFAFCB;
-    --cream: #FBEFEA;
-    --muted: #D2A9C6;
+    --bg: #0F2E1A;
+    --panel: #1A4D2E;
+    --panel-2: #2D6A4F;
+    --line: #40916C;
+    --coral: #52B788;
+    --gold: #FFD60A;
+    --lilac: #74C69D;
+    --teal: #2D6A4F;
+    --pink: #95D5B2;
+    --cream: #E8F5E9;
+    --muted: #A8D5BA;
   }
 
   *{box-sizing:border-box;}
@@ -85,7 +85,7 @@
 
   .bubble{
     background: var(--cream);
-    color: #16302B;
+    color: #0F2E1A;
     border-radius: 16px;
     padding: 10px 14px;
     font-size: 14px;
@@ -132,8 +132,8 @@
     background: var(--panel-2); color: var(--muted); font-weight:700; font-size:14px;
     cursor:pointer; transition: all .15s ease;
   }
-  .type-btn.active[data-type="gasto"]{ background: var(--coral); color:#16302B; border-color:var(--coral); }
-  .type-btn.active[data-type="ingreso"]{ background: var(--gold); color:#16302B; border-color:var(--gold); }
+  .type-btn.active[data-type="gasto"]{ background: var(--coral); color:#0F2E1A; border-color:var(--coral); }
+  .type-btn.active[data-type="ingreso"]{ background: var(--gold); color:#0F2E1A; border-color:var(--gold); }
 
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
   .chip{
@@ -153,7 +153,7 @@
 
   .btn-primary{
     width:100%; padding: 13px; border-radius: 14px; border:none;
-    background: var(--gold); color: #16302B; font-weight:800; font-size:15px;
+    background: var(--gold); color: #0F2E1A; font-weight:800; font-size:15px;
     cursor:pointer; margin-top:4px;
   }
   .btn-primary:active{ transform: scale(0.98); }
@@ -173,7 +173,7 @@
   .goal-nums{ font-size:13px; color:var(--muted); font-weight:600; }
   .plant-stage{ text-align:center; margin: 6px 0 12px; }
   .goal-track{ height:10px; background:var(--panel-2); border-radius:999px; overflow:hidden; margin-bottom:12px;}
-  .goal-fill{ height:100%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius:999px; transition:width .5s ease; }
+  .goal-fill{ height:100%; background: linear-gradient(90deg, #52B788, #FFD60A); border-radius:999px; transition:width .5s ease; }
   .goal-actions{ display:flex; gap:8px; }
   .goal-actions input{ flex:1; }
   .btn-secondary{
@@ -210,7 +210,7 @@
   /* ---------- Toast ---------- */
   #toast{
     position: fixed; top: 16px; left:50%; transform: translateX(-50%) translateY(-60px);
-    background: var(--gold); color:#16302B; font-weight:800; font-size:14px;
+    background: var(--gold); color:#0F2E1A; font-weight:800; font-size:14px;
     padding: 12px 18px; border-radius: 999px; z-index: 50;
     transition: transform .35s cubic-bezier(.2,1.4,.4,1);
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
@@ -226,9 +226,9 @@
     bottom: 24px;
     width: 58px; height: 58px;
     border-radius: 50%;
-    background: linear-gradient(150deg, var(--coral), var(--lilac));
+    background: linear-gradient(150deg, var(--gold), var(--coral));
     border: none;
-    color: #3B1F35;
+    color: #0F2E1A;
     font-size: 28px;
     font-weight: 800;
     display:flex; align-items:center; justify-content:center;
@@ -278,23 +278,23 @@
       <svg viewBox="0 0 130 130" width="130" height="130">
         <ellipse cx="65" cy="118" rx="38" ry="6" fill="#000" opacity="0.15"/>
         <path d="M65 14c30 0 46 22 46 50s-16 52-46 52-46-24-46-52S35 14 65 14z" fill="var(--lilac)"/>
-        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#16302B" class="face-happy"/>
-        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#16302B" class="face-happy"/>
-        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#16302B" class="face-neutral"/>
-        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#16302B" class="face-neutral"/>
-        <ellipse cx="46" cy="60" rx="7" ry="7" fill="#16302B" class="face-sad"/>
-        <ellipse cx="84" cy="60" rx="7" ry="7" fill="#16302B" class="face-sad"/>
+        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-happy"/>
+        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-happy"/>
+        <ellipse cx="46" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-neutral"/>
+        <ellipse cx="84" cy="58" rx="7" ry="9" fill="#0F2E1A" class="face-neutral"/>
+        <ellipse cx="46" cy="60" rx="7" ry="7" fill="#0F2E1A" class="face-sad"/>
+        <ellipse cx="84" cy="60" rx="7" ry="7" fill="#0F2E1A" class="face-sad"/>
         <circle cx="44" cy="52" r="2" fill="#F3EFE4" class="face-happy"/>
         <circle cx="82" cy="52" r="2" fill="#F3EFE4" class="face-happy"/>
-        <path d="M46 82c8 10 30 10 38 0" stroke="#16302B" stroke-width="4" fill="none" stroke-linecap="round" class="face-happy"/>
-        <path d="M46 86h38" stroke="#16302B" stroke-width="4" fill="none" stroke-linecap="round" class="face-neutral"/>
-        <path d="M46 92c8-9 30-9 38 0" stroke="#16302B" stroke-width="4" fill="none" stroke-linecap="round" class="face-sad"/>
+        <path d="M46 82c8 10 30 10 38 0" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-happy"/>
+        <path d="M46 86h38" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-neutral"/>
+        <path d="M46 92c8-9 30-9 38 0" stroke="#0F2E1A" stroke-width="4" fill="none" stroke-linecap="round" class="face-sad"/>
         <ellipse cx="34" cy="72" rx="7" ry="4" fill="var(--pink)" opacity="0.6"/>
         <ellipse cx="96" cy="72" rx="7" ry="4" fill="var(--pink)" opacity="0.6"/>
         <g transform="translate(65,17)">
-          <path d="M-15,0 L-3,-7 L-3,7 Z" fill="var(--coral)"/>
-          <path d="M15,0 L3,-7 L3,7 Z" fill="var(--coral)"/>
-          <circle cx="0" cy="0" r="4.5" fill="var(--coral)"/>
+          <path d="M-15,0 L-3,-7 L-3,7 Z" fill="var(--gold)"/>
+          <path d="M15,0 L3,-7 L3,7 Z" fill="var(--gold)"/>
+          <circle cx="0" cy="0" r="4.5" fill="var(--gold)"/>
         </g>
       </svg>
     </div>
@@ -362,18 +362,18 @@
 <script>
 (function(){
   const CATS_GASTO = [
-    {id:'comida', label:'Comida', icon:'🍔', color:'#FF6F91'},
-    {id:'transporte', label:'Transporte', icon:'🚌', color:'#9B8AC4'},
-    {id:'diversion', label:'Diversión', icon:'🎉', color:'#C9A0FF'},
-    {id:'casa', label:'Casa', icon:'🏠', color:'#F0BE7A'},
-    {id:'salud', label:'Salud', icon:'💊', color:'#FFAFCB'},
-    {id:'otros', label:'Otros', icon:'📦', color:'#D2A9C6'},
+    {id:'comida', label:'Comida', icon:'🍔', color:'#52B788'},
+    {id:'transporte', label:'Transporte', icon:'🚌', color:'#74C69D'},
+    {id:'diversion', label:'Diversión', icon:'🎉', color:'#95D5B2'},
+    {id:'casa', label:'Casa', icon:'🏠', color:'#FFD60A'},
+    {id:'salud', label:'Salud', icon:'💊', color:'#52B788'},
+    {id:'otros', label:'Otros', icon:'📦', color:'#A8D5BA'},
   ];
   const CATS_INGRESO = [
-    {id:'sueldo', label:'Sueldo', icon:'💼', color:'#F0BE7A'},
-    {id:'extra', label:'Extra', icon:'🎁', color:'#C9A0FF'},
-    {id:'inversion', label:'Inversión', icon:'📈', color:'#9B8AC4'},
-    {id:'otros', label:'Otros', icon:'📦', color:'#D2A9C6'},
+    {id:'sueldo', label:'Sueldo', icon:'💼', color:'#FFD60A'},
+    {id:'extra', label:'Extra', icon:'🎁', color:'#95D5B2'},
+    {id:'inversion', label:'Inversi��n', icon:'📈', color:'#74C69D'},
+    {id:'otros', label:'Otros', icon:'📦', color:'#A8D5BA'},
   ];
 
   const ACHIEVEMENTS = [
