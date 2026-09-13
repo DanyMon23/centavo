@@ -115,6 +115,11 @@
   }
   .card h2{ font-size: 17px; font-weight:600; font-style:italic; margin-bottom: 12px; color: var(--cream); }
 
+  .card-header{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;
+  }
+  .card-header h2{ margin:0; }
+
   .balance-row{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 14px; }
   .balance-label{ font-size:12px; color: var(--muted); font-weight:600; }
   .balance-amount{ font-family:'Fraunces', serif; font-size: 30px; font-weight:600; }
@@ -192,6 +197,7 @@
   .investment-item .details{ flex:1; min-width:0; }
   .investment-name{ font-weight:700; font-size:14px; }
   .investment-amount{ font-size:13px; color:var(--muted); }
+  .investment-loss{ font-size:12px; color:#FF6B6B; font-weight:700; margin-top:2px; }
   .investment-item .delete{ background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px; padding:4px 6px; }
 
   /* ---------- Achievements ---------- */
@@ -217,6 +223,16 @@
   .hist-note{ font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .hist-amt{ font-weight:800; font-size:14px; font-family:'Fraunces', serif; }
   .hist-del{ background:none; border:none; color: var(--muted); font-size:16px; cursor:pointer; padding:4px 6px; }
+
+  /* ---------- Export buttons ---------- */
+  .export-buttons{
+    display:flex; gap:8px; margin-bottom:12px;
+  }
+  .btn-export{
+    flex:1; padding: 11px; border-radius: 14px; border: 1px solid var(--line);
+    background: var(--panel-2); color: var(--cream); font-weight:700; font-size:13px; cursor:pointer;
+  }
+  .btn-export:active{ transform: scale(0.95); }
 
   /* ---------- Toast ---------- */
   #toast{
@@ -314,7 +330,9 @@
   </div>
 
   <div class="card">
-    <h2>Este mes</h2>
+    <div class="card-header">
+      <h2>Este mes</h2>
+    </div>
     <div class="balance-row">
       <div>
         <div class="balance-label">BALANCE</div>
@@ -361,15 +379,27 @@
   </div>
 
   <div class="card">
-    <h2>Mis inversiones</h2>
+    <div class="card-header">
+      <h2>Mis inversiones</h2>
+    </div>
     <div class="field-row">
       <input type="text" id="investment-name-input" placeholder="Nombre (ej: Acciones, Bonos)">
     </div>
     <div class="field-row">
-      <input type="number" id="investment-amount-input" placeholder="Monto" inputmode="decimal">
+      <input type="number" id="investment-amount-input" placeholder="Monto inicial" inputmode="decimal">
     </div>
     <button class="btn-secondary" id="investment-add-btn" style="width:100%; margin-top:8px;">Agregar inversión</button>
     <div id="investments-list" style="margin-top:12px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Mis datos</h2>
+    </div>
+    <div class="export-buttons">
+      <button class="btn-export" id="export-csv">📊 Descargar CSV</button>
+      <button class="btn-export" id="export-json">💾 Descargar JSON</button>
+    </div>
   </div>
 
   <div class="card">
@@ -391,6 +421,9 @@
     {id:'diversion', label:'Diversión', icon:'🎉', color:'#95D5B2'},
     {id:'casa', label:'Casa', icon:'🏠', color:'#FFD60A'},
     {id:'salud', label:'Salud', icon:'💊', color:'#52B788'},
+    {id:'educacion', label:'Educación', icon:'📚', color:'#40916C'},
+    {id:'servicios', label:'Servicios', icon:'🔧', color:'#74C69D'},
+    {id:'creditos', label:'Créditos', icon:'💳', color:'#FF6B6B'},
     {id:'otros', label:'Otros', icon:'📦', color:'#A8D5BA'},
   ];
   const CATS_INGRESO = [
@@ -627,14 +660,17 @@
       list.innerHTML = '<div class="empty-note">Aún no has registrado inversiones.</div>';
       return;
     }
-    const total = data.investments.reduce((s,i)=>s+i.amount,0);
+    const total = data.investments.reduce((s,i)=>s+i.currentValue,0);
     list.innerHTML = data.investments.map(inv=>{
-      const pct = Math.round((inv.amount/total)*100);
+      const pct = Math.round((inv.currentValue/total)*100);
+      const loss = inv.currentValue - inv.initialValue;
+      const lossIndicator = loss < 0 ? `<div class="investment-loss">📉 -${fmt(Math.abs(loss))}</div>` : '';
       return `<div class="investment-item">
         <div class="icon">📊</div>
         <div class="details">
           <div class="investment-name">${inv.name}</div>
-          <div class="investment-amount">${fmt(inv.amount)} (${pct}%)</div>
+          <div class="investment-amount">${fmt(inv.currentValue)} (${pct}%)</div>
+          ${lossIndicator}
         </div>
         <button class="delete" data-id="${inv.id}" title="Eliminar">✕</button>
       </div>`;
@@ -735,7 +771,9 @@
     data.investments.push({
       id: uid(),
       name: name,
-      amount: amount
+      initialValue: amount,
+      currentValue: amount,
+      addedDate: todayStr()
     });
     checkAchievements();
     await saveData();
@@ -770,6 +808,39 @@
     if(target>0) data.goal.target = target;
     await saveData();
     renderAll();
+  }
+
+  function exportToCSV(){
+    let csv = 'Fecha,Tipo,Categoría,Monto,Nota\n';
+    data.transactions.forEach(t=>{
+      const cat = findCat(t.type, t.category);
+      csv += `${t.date},${t.type},${cat.label},${t.amount},"${t.note}"\n`;
+    });
+    csv += '\n\nInversiones,Nombre,Valor Inicial,Valor Actual,Ganancia/Pérdida\n';
+    data.investments.forEach(inv=>{
+      const change = inv.currentValue - inv.initialValue;
+      csv += `Inversión,${inv.name},${inv.initialValue},${inv.currentValue},${change}\n`;
+    });
+    downloadFile(csv, 'centavo-datos.csv', 'text/csv');
+    showToast('✅ CSV descargado');
+  }
+
+  function exportToJSON(){
+    const json = JSON.stringify(data, null, 2);
+    downloadFile(json, 'centavo-datos.json', 'application/json');
+    showToast('✅ JSON descargado');
+  }
+
+  function downloadFile(content, filename, type){
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   function setType(type){
@@ -809,6 +880,20 @@
     try{
       data = await loadData();
       if(!data.investments) data.investments = [];
+      
+      // Migrar inversiones antiguas al nuevo formato
+      data.investments = data.investments.map(inv=>{
+        if(inv.initialValue === undefined){
+          return {
+            ...inv,
+            initialValue: inv.amount || 0,
+            currentValue: inv.amount || 0,
+            addedDate: todayStr()
+          };
+        }
+        return inv;
+      });
+
       const tpl = document.getElementById('main-template');
       const app = document.getElementById('app');
       app.innerHTML = '';
@@ -819,6 +904,8 @@
       document.getElementById('btn-inversion').onclick = ()=> setType('inversion');
       document.getElementById('submit-btn').onclick = onSubmit;
       document.getElementById('investment-add-btn').onclick = onAddInvestment;
+      document.getElementById('export-csv').onclick = exportToCSV;
+      document.getElementById('export-json').onclick = exportToJSON;
 
       renderAll();
       setupShortcut();
